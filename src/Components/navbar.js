@@ -1,4 +1,9 @@
+import React from "react";
+
 function NavBar(){
+    const [activate, setActivate] = React.useState("false");
+    
+    const turnActive = ()=> {setActivate(!activate);};
     
     return(
         <>
@@ -8,11 +13,11 @@ function NavBar(){
             <span className="navbar-toggler-icon"></span>
         </button>
         <div className="collapse navbar-collapse" id="navbarNav">
-            <ul className="navbar-nav">
-            <li className="nav-item active">
-                <a className="nav-link" href="#/CreateAccount/">Create Account</a>            </li>
-            <li className="nav-item">
-                <a className="nav-link" href="#/AllData/">All Data</a>
+            <ul className="navbar-nav" id="navbarNavNav">
+            <li className={ activate ? "nav-item active":"nav-item"}>
+                <a className="nav-link" href="#/CreateAccount/" onClick={turnActive}>Create Account</a>            </li>
+            <li className={ activate ? "nav-item active":"nav-item"}>
+                <a className="nav-link" href="#/AllData/" onClick={turnActive}>All Data</a>
             </li>
             <li className="nav-item">
                 <a className="nav-link" href="#/Deposit/">Deposit</a>

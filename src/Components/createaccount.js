@@ -1,6 +1,6 @@
 import React from 'react';
 import Card from "./context";
-import UserContext from "./context";
+import UserContext from "./usercontext";
 
 function Account(){
     const [show, setShow]           = React.useState(true);
@@ -10,6 +10,19 @@ function Account(){
     const [password, setPassword]   = React.useState('');
     const ctx                       = React.useContext(UserContext);
 
+    function validatePassword(field, label){
+        if (!validate(field, label)){
+            return;
+            }
+            else{
+                if(field.length<8){
+                    setStatus('Error: Please enter a password that has more than 8 characters');
+                    return false;
+                } 
+                return true;   
+        }
+    }
+    
     function validate(field, label){
         if (!field) {
             setStatus('Error: ' + label);
@@ -21,10 +34,11 @@ function Account(){
 
     function handleCreate(){
         console.log(name, email, password);
-        if(!validate(email, "email")) return;
-        if(!validate(name, "name")) return;
-        if(!validate(password, "password")) return;
+        if(!validate(email, "Please enter an email")) return;
+        if(!validate(name, "Please enter a name")) return;
+        if(!validatePassword(password, "Please enter a password")) return;
         ctx.users.push({name, email, password, balance:100});
+        alert('You have successfully created an account!');
         setShow(false);
     }
 
@@ -33,6 +47,15 @@ function Account(){
         setEmail('');
         setPassword('');
         setShow(true);
+    }
+
+    function evalValues(){
+        let x = (email == '');
+        console.log(`email is blank: ${x}`);
+        let y = (name == '');
+        console.log(`name is blank: ${y}`);
+        let z = (password == '');
+        console.log(`password is blank: ${z}`);
     }
 
     return(
@@ -50,7 +73,7 @@ function Account(){
             Password<br/>
             <input type="password" className="form-control" id="password" placeholder="Enter password" value={password} onChange={e=>setPassword(e.currentTarget.value)}/>
             <br/>
-            <button type="submit" className="btn btn-light" onClick={handleCreate}>Login</button>
+            <button type="submit" className={ !name=='' && !email=='' && !password=='' ? "btn btn-light" : "btn btn-light disabled"} onClick={handleCreate}>Create Account</button>
             </>)
             :
             (<>

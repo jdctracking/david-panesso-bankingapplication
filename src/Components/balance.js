@@ -1,10 +1,15 @@
-// import React from 'react';
-// import Card from "./context";
-// import UserContext from "./context";
+import React from 'react';
+import Card from "./context";
 
 function Balance(){
     return(
-        <h1>Balance</h1>
+        <Card
+        bgcolor="dark"
+        txtcolor="white"
+        header="Balance"
+        status={window.status}
+        body={<p>Under construction</p>}
+        />
     );
 }
 export default Balance;

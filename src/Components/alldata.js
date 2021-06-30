@@ -4,13 +4,15 @@ import UserContext from "./usercontext";
 
 function AllData(){
     const ctx = React.useContext(UserContext);
+    const arrUsers = ctx.users;
+    
     return(
         <Card
             bgcolor="info"
             txtcolor="black"
             header="All Data"
-            body={ctx.users.forEach((user) => console.log(user.name, user.email, user.password, user.balance))}
-        />
+            body={arrUsers.map((user) =><p>Name: {user.name}<br/> Email: {user.email}<br/> Password: {user.password}<br/> Balance: ${user.balance}</p>)}
+            />
     );
 }
 export default AllData;

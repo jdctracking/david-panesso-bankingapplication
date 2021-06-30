@@ -1,15 +1,15 @@
 import Card from "./context";
-import UserContext from "./context";
+import bank from "./bank.png";
 
 function Home(){
     return(
         <Card
-            bgcolor="dark"
+            bgcolor="success"
             txtcolor="white"
             header="Bad Bank Landing Page"
-            title="Welcome to the Bank"
-            text="You can use this bank"
-            body={(<img src="bank.png" className="img-fluid" 
+            title="Welcome to Bad Bank"
+            text="Online services at the tip of your fingers!"
+            body={(<img src={bank} className="img-fluid" 
             alt="Responsive image"/>)}
         />
     );
